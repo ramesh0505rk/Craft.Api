@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Operations\Commands\Handlers\" />
-    <Folder Include="Operations\Queries\Handlers\" />
-    <Folder Include="Operations\Queries\Requests\" />
   </ItemGroup>
 
   <ItemGroup>

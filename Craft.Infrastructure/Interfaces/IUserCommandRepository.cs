@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Craft.Infrastructure.Interfaces
 {
-    public class IUserCommandRepository
+    public interface IUserCommandRepository
     {
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Craft.Application.Operations.Commands.Requests;
+using Craft.Application.Operations.Queries.Requests;
 using Craft.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,12 @@ namespace Craft.Application.Mapper
     {
         public MapperProfile()
         {
-            #region
-            CreateMap<UserRegistrationCommand,UserRegistrationRequest>();
+            #region Commands
+            CreateMap<UserRegistrationCommand, UserRegistrationRequest>();
+            #endregion
+
+            #region Queries
+            CreateMap<GetUserListQuery, GetUserListRequest>();
             #endregion
         }
     }

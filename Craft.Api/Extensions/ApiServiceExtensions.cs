@@ -1,4 +1,5 @@
 ﻿using Craft.Application.Extensions;
+using Craft.Infrastructure.Extensions;
 
 namespace Craft.Api.Extensions
 {
@@ -9,6 +10,7 @@ namespace Craft.Api.Extensions
             services.AddSwaggerExtension();
             services.AddCorsExtension(configuration);
             services.AddApplicationServices();
+            services.AddInfrastructureServices();
             return services;
         }
     }

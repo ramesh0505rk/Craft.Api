@@ -8,5 +8,6 @@ namespace Craft.Infrastructure
 {
     public class DBQueries
     {
+        public const string GetUserList = "Usp_GetUserList";
     }
 }
