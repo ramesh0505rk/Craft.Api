@@ -1,0 +1,16 @@
+﻿using Craft.Domain.Entities;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Craft.Application.ResponseDTOs
+{
+	public class GetUserListDTO
+	{
+		[JsonProperty("users")]
+		public List<GetUserListResponse> Users { get; set; }
+	}
+}
