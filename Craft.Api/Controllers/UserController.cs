@@ -30,6 +30,12 @@ namespace Craft.Api.Controllers
 		{
 			return Ok(await _mediator.Send(request));
 		}
+
+		[HttpPost("SignUp")]
+		public async Task<IActionResult> SignUp([FromBody] SignUpCommand request)
+		{
+			return Ok(await _mediator.Send(request));
+		}
 		#endregion
 
 	}
