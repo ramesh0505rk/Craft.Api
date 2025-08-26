@@ -25,7 +25,7 @@ namespace Craft.Infrastructure.Repositories
 			_logger = logger;
 		}
 
-		public async Task<Guid> ValidateUser(string userName, string password, CancellationToken cancellationToken)
+		public async Task<Guid?> ValidateUser(string userName, string password, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -52,7 +52,7 @@ namespace Craft.Infrastructure.Repositories
 			}
 		}
 
-		public async Task<User> GetUserDetails(Guid userId, CancellationToken cancellationToken)
+		public async Task<User> GetUserDetails(Guid? userId, CancellationToken cancellationToken)
 		{
 			try
 			{

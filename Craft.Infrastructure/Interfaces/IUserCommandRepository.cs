@@ -9,8 +9,8 @@ namespace Craft.Infrastructure.Interfaces
 {
 	public interface IUserCommandRepository
 	{
-		Task<Guid> ValidateUser(string userName, string password, CancellationToken cancellationToken);
-		Task<User> GetUserDetails(Guid userId, CancellationToken cancellationToken);
+		Task<Guid?> ValidateUser(string userName, string password, CancellationToken cancellationToken);
+		Task<User> GetUserDetails(Guid? userId, CancellationToken cancellationToken);
 
 	}
 }

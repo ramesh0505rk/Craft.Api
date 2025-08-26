@@ -43,12 +43,12 @@ namespace Craft.Application.Operations.Commands.Handlers
 			return CreateSuccessResponse(accessToken);
 		}
 
-		private async Task<Guid> ValidateUser(SignInCommand request, CancellationToken cancellationToken)
+		private async Task<Guid?> ValidateUser(SignInCommand request, CancellationToken cancellationToken)
 		{
 			try
 			{
 				var userId = await _userCommandRepository.ValidateUser(request.UserName, request.Password, cancellationToken);
-				if (userId == Guid.Empty)
+				if (userId == null)
 				{
 					_logger.LogError("Invalid credentials provided for user: {UserName}", request.UserName);
 					throw new BadRequestCustomException(["Invalid username or password."]);
@@ -62,7 +62,7 @@ namespace Craft.Application.Operations.Commands.Handlers
 			}
 		}
 
-		private async Task<User> GetUserDetails(Guid userId, CancellationToken cancellationToken)
+		private async Task<User> GetUserDetails(Guid? userId, CancellationToken cancellationToken)
 		{
 			try
 			{
