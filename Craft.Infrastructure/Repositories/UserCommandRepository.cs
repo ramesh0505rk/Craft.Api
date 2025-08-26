@@ -36,7 +36,7 @@ namespace Craft.Infrastructure.Repositories
 				parameters.Add("@UserName", userName);
 				parameters.Add("@Password", password);
 
-				var result = await connection.QueryFirstAsync<Guid>(
+				var result = await connection.QueryFirstAsync<Guid?>(
 					DBQueries.ValidateUser,
 					parameters,
 					commandType: System.Data.CommandType.StoredProcedure);
