@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Craft.Application.ResponseDTOs
 {
-	public class SignUpDTO
-	{
-		[JsonProperty("accessToken")]
-		public string AccessToken { get; set; }
-	}
+    public class SignUpDTO : BaseDTO
+    {
+        [JsonProperty("accessToken")]
+        public string AccessToken { get; set; }
+    }
 }

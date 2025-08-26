@@ -16,6 +16,7 @@ namespace Craft.Application.Mapper
         {
             #region Commands
             CreateMap<UserRegistrationCommand, UserRegistrationRequest>();
+            CreateMap<SignUpCommand, SignUpRequest>();
             #endregion
 
             #region Queries
