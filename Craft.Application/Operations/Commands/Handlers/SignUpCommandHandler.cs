@@ -28,9 +28,23 @@ namespace Craft.Application.Operations.Commands.Handlers
 			_mapper = mapper;
 		}
 
-		//public async Task<SignUpDTO> Handle(SignUpCommand request, CancellationToken cancellationToken)
-		//{
+		public async Task<SignUpDTO> Handle(SignUpCommand request, CancellationToken cancellationToken)
+		{
 
-		//}
-	}
+		}
+
+		private async Task<bool> CheckUserExists(SignUpCommand request, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var userExists = await _userCommandRepository.CheckUserExists(request.UserName, request.UserEmail, cancellationToken);
+				return userExists;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error thrown in SignUpCommandHandler.CheckUserExists. Input parameters: {InputParams}", request);
+				throw;
+			}
+        }
+    }
 }
