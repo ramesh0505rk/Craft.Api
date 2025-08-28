@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Craft.Application.Operations.Commands.Requests
+namespace Craft.Application.ResponseDTOs
 {
-    public class UserRegistrationCommand
+    public class RequestOTPDTO : BaseDTO
     {
+        public string OTP { get; set; }
     }
 }
