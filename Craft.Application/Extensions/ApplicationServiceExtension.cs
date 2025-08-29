@@ -23,7 +23,7 @@ namespace Craft.Application.Extensions
             services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
             //Register FluentValidation from application layer
-            services.AddValidatorsFromAssemblyContaining<UserRegistrationRequestValidator>();
+            services.AddValidatorsFromAssemblyContaining<GetUserListRequestValidator>();
 
             services.AddFluentValidationAutoValidation(options =>
             {

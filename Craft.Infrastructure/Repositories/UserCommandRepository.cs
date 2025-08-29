@@ -131,5 +131,30 @@ namespace Craft.Infrastructure.Repositories
             }
         }
 
+        public async Task<int> RequestOTP(string userEmail, CancellationToken cancellationToken)
+        {
+            try
+            {
+                _logger.LogInformation("Information in UserCommandRepository.RequestOTP: Input Parameters: UserEmail = {userEmail}", userEmail);
+                using var connection = await _dbConnectionFactory.GetOpenConnection(cancellationToken);
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@UserEmail", userEmail);
+
+                var result = await connection.ExecuteScalarAsync<int>(
+                    DBQueries.RequestOTP,
+                    parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var inputParams = new { userEmail };
+                _logger.LogError(ex, "Error thrown in UserCommandRepository.RequestOTP. Input parameters: {InputParams}", JsonConvert.SerializeObject(inputParams));
+                throw;
+            }
+        }
+
     }
 }
