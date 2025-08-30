@@ -15,10 +15,20 @@ namespace Craft.Api.Controllers
             _mediator = mediator;
         }
 
+        #region Commands
+
         [HttpPost("RequestOTP")]
         public async Task<IActionResult> RequestOTP([FromBody] RequestOTPCommand request)
         {
             return Ok(await _mediator.Send(request));
         }
+
+        [HttpPost("ValidateOTP")]
+        public async Task<IActionResult> ValidateOTP([FromBody] ValidateOTPCommand request)
+        {
+            return Ok(await _mediator.Send(request));
+        }
+
+        #endregion
     }
 }

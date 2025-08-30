@@ -14,5 +14,6 @@ namespace Craft.Infrastructure.Interfaces
         Task<CheckUserExists> CheckUserExists(string userName, string userEmail, CancellationToken cancellationToken);
         Task<User> InsertUser(SignUpRequest request, CancellationToken cancellationToken);
         Task<int> RequestOTP(string userEmail, CancellationToken cancellationToken);
+        Task<int> ValidateOTP(string userEmail, string otp, CancellationToken cancellationToken);
     }
 }

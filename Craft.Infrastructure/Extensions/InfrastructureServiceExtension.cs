@@ -1,4 +1,5 @@
-﻿using Craft.Infrastructure.Interfaces;
+﻿using Craft.Infrastructure.ExternalServices;
+using Craft.Infrastructure.Interfaces;
 using Craft.Infrastructure.Presistence;
 using Craft.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace Craft.Infrastructure.Extensions
             services.AddScoped<IUserQueryRepository, UserQueryRepository>();
             services.AddScoped<IUserCommandRepository, UserCommandRepository>();
             services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+            services.AddScoped<MailService>();
 
             return services;
         }
