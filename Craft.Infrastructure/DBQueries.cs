@@ -15,5 +15,6 @@ namespace Craft.Infrastructure
         public const string CheckUserExists = "Usp_CheckUserExists";
         public const string RequestOTP = "Usp_RequestOTP";
         public const string ValidateOTP = "Usp_ValidateOtp";
+        public const string ResetPassword = "Usp_ResetUserPassword";
     }
 }

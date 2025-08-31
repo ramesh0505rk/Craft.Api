@@ -182,5 +182,32 @@ namespace Craft.Infrastructure.Repositories
             }
         }   
 
+        public async Task<int> ResetPassword(string userEmail, string newPassword, string otp, CancellationToken cancellationToken)
+        {
+            try
+            {
+                _logger.LogInformation("Information in UserCommandRepository.ResetPassword: Input Parameters: UserEmail = {userEmail}", userEmail);
+                using var connection = await _dbConnectionFactory.GetOpenConnection(cancellationToken);
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@UserEmail", userEmail);
+                parameters.Add("@NewPassword", newPassword);
+                parameters.Add("@Otp", otp);
+
+                var result = await connection.ExecuteScalarAsync<int>(
+                    DBQueries.ResetPassword,
+                    parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var inputParams = new { userEmail, newPassword, otp };
+                _logger.LogError(ex, "Error thrown in UserCommandRepository.ResetPassword. Input parameters: {InputParams}", JsonConvert.SerializeObject(inputParams));
+                throw;
+            }
+        }
+
     }
 }

@@ -15,5 +15,6 @@ namespace Craft.Infrastructure.Interfaces
         Task<User> InsertUser(SignUpRequest request, CancellationToken cancellationToken);
         Task<int> RequestOTP(string userEmail, CancellationToken cancellationToken);
         Task<int> ValidateOTP(string userEmail, string otp, CancellationToken cancellationToken);
+        Task<int> ResetPassword(string userEmail, string newPassword, string otp, CancellationToken cancellationToken);
     }
 }
