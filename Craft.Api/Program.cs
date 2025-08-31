@@ -29,6 +29,8 @@ var app = builder.Build();
 
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
+app.UseCors("AllowAllOrigins");
+
 app.UseSwaggerExtension();
 
 app.UseHttpsRedirection();

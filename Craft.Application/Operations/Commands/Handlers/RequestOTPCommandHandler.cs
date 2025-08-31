@@ -2,6 +2,7 @@
 using Craft.Application.Operations.Commands.Requests;
 using Craft.Application.ResponseDTOs;
 using Craft.Domain.Common.ExceptionHandling;
+using Craft.Infrastructure.ExternalServices;
 using Craft.Infrastructure.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -17,17 +18,19 @@ namespace Craft.Application.Operations.Commands.Handlers
     {
         private readonly IUserCommandRepository _userCommandRepository;
         private readonly ILogger<RequestOTPCommandHandler> _logger;
+        private readonly MailService _mailService;
 
-        public RequestOTPCommandHandler(IUserCommandRepository userCommandRepository, ILogger<RequestOTPCommandHandler> logger)
+        public RequestOTPCommandHandler(IUserCommandRepository userCommandRepository, ILogger<RequestOTPCommandHandler> logger, MailService mailService)
         {
             _userCommandRepository = userCommandRepository;
             _logger = logger;
+            _mailService = mailService;
         }
 
         public async Task<RequestOTPDTO> Handle(RequestOTPCommand request, CancellationToken cancellationToken)
         {
             var otp = await RequestOTP(request.UserEmail, cancellationToken);
-
+            await _mailService.SendOtpToUserEmail(request.UserEmail, otp);
             return CreateSuccessResponse(otp);
         }
 
