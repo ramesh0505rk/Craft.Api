@@ -1,6 +1,7 @@
 ﻿using Craft.Application.Operations.Commands.Requests;
 using Craft.Application.Operations.Queries.Requests;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace Craft.Api.Controllers
 
 		#region Queries
 		[HttpGet("GetUserList")]
+		[Authorize]
 		public async Task<IActionResult> GetUserList([FromQuery] GetUserListQuery request)
 		{
 			return Ok(await _mediator.Send(request));
