@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Craft.Application.Operations.Commands.Requests;
 using Craft.Application.Operations.Queries.Requests;
+using Craft.Application.ResponseDTOs;
 using Craft.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace Craft.Application.Mapper
 
             #region Queries
             CreateMap<GetUserListQuery, GetUserListRequest>();
+            CreateMap<GetUserPreferencesResponse, GetUserPreferencesDTO>();
+            CreateMap<GetUserPreferencesQuery, GetUserPreferencesRequest>();
             #endregion
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Data;
+using System.Threading;
 
 namespace Craft.Infrastructure.Repositories
 {
@@ -41,6 +42,32 @@ namespace Craft.Infrastructure.Repositories
             {
                 var inputParams = new { request };
                 _logger.LogError(ex, "Error thrown in UserQueryRepository.GetUserList. Input parameters: {InputParams}", JsonConvert.SerializeObject(inputParams));
+                throw;
+            }
+        }
+
+        public async Task<GetUserPreferencesResponse> GetUserPreference(GetUserPreferencesRequest request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                _logger.LogInformation("Information in UserQueryRepository.GetUserPreference: Input Parameters: {Request}", JsonConvert.SerializeObject(request));
+                using var connection = await _dbConnectionFactory.GetOpenConnection(cancellationToken);
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@UserID", request.UserID);
+
+                var result = await connection.QueryFirstOrDefaultAsync<GetUserPreferencesResponse>(
+                    DBQueries.GetUserPreferences,
+                    parameters,
+                    commandType: CommandType.Text);
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                var inputParams = new { request };
+                _logger.LogError(ex, "Error thrown in UserQueryRepository.GetUserPreference. Input parameters: {InputParams}", JsonConvert.SerializeObject(inputParams));
                 throw;
             }
         }

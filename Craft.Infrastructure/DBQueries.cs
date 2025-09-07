@@ -16,5 +16,6 @@ namespace Craft.Infrastructure
         public const string RequestOTP = "Usp_RequestOTP";
         public const string ValidateOTP = "Usp_ValidateOtp";
         public const string ResetPassword = "Usp_ResetUserPassword";
+        public const string GetUserPreferences = "SELECT * FROM ufn_GetUserPreferencesByUserID(@UserID)";
     }
 }
