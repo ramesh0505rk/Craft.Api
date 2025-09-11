@@ -18,6 +18,8 @@ namespace Craft.Infrastructure.Extensions
             services.AddScoped<IUserQueryRepository, UserQueryRepository>();
             services.AddScoped<IUserCommandRepository, UserCommandRepository>();
             services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+            services.AddScoped<IProjectQueryRepository, ProjectQueryRepository>();
+            services.AddScoped<IProjectCommandRepository, ProjectCommandRepository>();
             services.AddScoped<MailService>();
 
             return services;
