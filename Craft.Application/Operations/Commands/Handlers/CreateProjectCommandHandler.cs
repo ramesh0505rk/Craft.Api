@@ -31,11 +31,11 @@ namespace Craft.Application.Operations.Commands.Handlers
 
         public async Task<CreateProjectDTO> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
-            bool isCreated = await CreateProject(request, cancellationToken);
-            return CreateSuccessResponse(isCreated);
+            await CreateProject(request, cancellationToken);
+            return CreateSuccessResponse(true);
         }
 
-        public async Task<bool> CreateProject(CreateProjectCommand request, CancellationToken cancellationToken)
+        public async Task CreateProject(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -44,12 +44,8 @@ namespace Craft.Application.Operations.Commands.Handlers
                 var req = _mapper.Map<CreateProjectRequest>(request);
                 var isCreated = await _projectCommandRepository.CreateProject(req, cancellationToken);
 
-                if (isCreated > 0)
-                {
-                    return true;
-                }
-
-                throw new BadRequestCustomException(new List<string> { "Failed to create the project. Try again later." });
+                if (isCreated < 0)
+                    throw new BadRequestCustomException(new List<string> { "Failed to create the project. Try again later." });
             }
             catch (Exception ex)
             {
