@@ -7,12 +7,6 @@ using Craft.Infrastructure.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 
 namespace Craft.Application.Operations.Queries.Handlers
 {

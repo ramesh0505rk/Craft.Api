@@ -1,16 +1,9 @@
-﻿using Azure.Core;
-using Craft.Domain.Entities;
+﻿using Craft.Domain.Entities;
 using Craft.Infrastructure.Interfaces;
 using Craft.Infrastructure.Presistence;
 using Dapper;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Craft.Infrastructure.Repositories
 {
